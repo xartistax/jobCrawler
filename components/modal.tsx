@@ -1,11 +1,18 @@
 "use client";
 import { Button } from "@heroui/button";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/modal";
-import { useUser } from "@/app/context/user";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@heroui/modal";
 import { User } from "firebase/auth";
-import LogViewer from "./log-viewer";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { baseURL } from "@/config/constants";
+
+import LogViewer from "./log-viewer";
+
+import { useUser } from "@/app/context/user";
 
 type Props = {
   isOpen: boolean;
@@ -14,10 +21,15 @@ type Props = {
 
 function startCrawl(setStartedAt: Dispatch<SetStateAction<string>>) {
   const ts = new Date().toISOString();
+
   setStartedAt(ts);
 }
 
-async function crawlJobs(user: User, startedAt: string, setActive: Dispatch<SetStateAction<boolean>>) {
+async function crawlJobs(
+  user: User,
+  startedAt: string,
+  setActive: Dispatch<SetStateAction<boolean>>,
+) {
   const token = await user.getIdToken();
 
   const uid = user.uid;
@@ -36,13 +48,12 @@ async function crawlJobs(user: User, startedAt: string, setActive: Dispatch<SetS
     // console.log("after fetch", res.status, text);
 
     if (!res.ok) {
-      console.log(res);
       return;
     }
 
     setActive(true);
   } catch (e) {
-    console.error("fetch failed", e);
+    throw Error("fetch failed", e as Error);
   }
 }
 
@@ -62,30 +73,49 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
 
   return (
     <Modal
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      size="3xl"
       backdrop="blur"
+      hideCloseButton={active}
       isDismissable={false}
       isKeyboardDismissDisabled={true}
-      hideCloseButton={active}
+      isOpen={isOpen}
+      size="3xl"
+      onOpenChange={onOpenChange}
     >
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">Neue Jobs crawlen (Jobs.ch)</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">
+              Neue Jobs crawlen (Jobs.ch)
+            </ModalHeader>
             <ModalBody className="text-sm">
               <p className="text-xs pb-3">
-                Startet den automatischen Import aktueller Stellenangebote von Jobs.ch in die Jobübersicht. ({process.env.NEXT_PUBLIC_CLOSESPIDER_ITEMCOUNT}{" "}
-                Stellen maximal) <br />
+                Startet den automatischen Import aktueller Stellenangebote von
+                Jobs.ch in die Jobübersicht. (
+                {process.env.NEXT_PUBLIC_CLOSESPIDER_ITEMCOUNT} Stellen maximal){" "}
+                <br />
               </p>
-              <LogViewer active={active} setActive={setActive} startedAt={startedAt} user={user!} />
+              <LogViewer
+                active={active}
+                setActive={setActive}
+                startedAt={startedAt}
+                user={user!}
+              />
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose} isDisabled={active}>
+              <Button
+                color="danger"
+                isDisabled={active}
+                variant="light"
+                onPress={onClose}
+              >
                 Schliessen
               </Button>
-              <Button isDisabled={!user || active} isLoading={active} color="primary" onPress={() => startCrawl(setStartedAt)}>
+              <Button
+                color="primary"
+                isDisabled={!user || active}
+                isLoading={active}
+                onPress={() => startCrawl(setStartedAt)}
+              >
                 Start JobScraper
               </Button>
             </ModalFooter>

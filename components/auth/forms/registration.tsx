@@ -36,16 +36,24 @@ export default function RegistrationForm({
   loading,
 }: Props) {
   return (
-    <Form className="w-[540px] mx-auto max-w-md gap-8" onSubmit={handleRegister}>
+    <Form
+      className="w-[540px] mx-auto max-w-md gap-8"
+      onSubmit={handleRegister}
+    >
       <div className="flex flex-col gap-4 w-full">
         <Input
+          isRequired
           classNames={{
             label: "text-xs font-light ",
-            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            input:
+              "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
           }}
-          isRequired
+          errorMessage={
+            emailFieldError
+              ? "Bitte gib eine gültige E-Mail-Adresse ein"
+              : undefined
+          }
           isInvalid={emailFieldError}
-          errorMessage={emailFieldError ? "Bitte gib eine gültige E-Mail-Adresse ein" : undefined}
           label="E-Mail"
           labelPlacement="outside"
           placeholder="Gib deine E-Mail-Adresse ein"
@@ -58,13 +66,16 @@ export default function RegistrationForm({
         />
 
         <Input
+          isRequired
           classNames={{
             label: "text-xs font-light ",
-            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            input:
+              "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
           }}
-          isRequired
+          errorMessage={
+            passwordFieldError ? "Bitte gib ein Passwort ein" : undefined
+          }
           isInvalid={passwordFieldError}
-          errorMessage={passwordFieldError ? "Bitte gib ein Passwort ein" : undefined}
           label="Passwort"
           labelPlacement="outside"
           placeholder="Setze ein Passwort"
@@ -77,13 +88,18 @@ export default function RegistrationForm({
         />
 
         <Input
+          isRequired
           classNames={{
             label: "text-xs font-light ",
-            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            input:
+              "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
           }}
-          isRequired
+          errorMessage={
+            confirmPasswordFieldError
+              ? "Die Passwörter stimmen nicht überein"
+              : undefined
+          }
           isInvalid={confirmPasswordFieldError}
-          errorMessage={confirmPasswordFieldError ? "Die Passwörter stimmen nicht überein" : undefined}
           label="Passwort bestätigen"
           labelPlacement="outside"
           placeholder="Passwort erneut eingeben"
@@ -100,17 +116,17 @@ export default function RegistrationForm({
 
       <div className="flex">
         <Button
+          className="mr-4 text-xs font-light"
+          isDisabled={loading || !email || !password || !confirmPassword}
+          isLoading={loading}
+          size="md"
           type="submit"
           variant="solid"
-          isLoading={loading}
-          isDisabled={loading || !email || !password || !confirmPassword}
-          className="mr-4 text-xs font-light"
-          size="md"
         >
           Jetzt registrieren
         </Button>
 
-        <Link href="/login" size="md" className="text-xs">
+        <Link className="text-xs" href="/login" size="md">
           Anmelden
         </Link>
       </div>

@@ -1,4 +1,10 @@
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import router from "next/router";
 
 export type LoginArgs = {
@@ -19,7 +25,14 @@ export type RegisterArgs = {
   confirmPassword: string;
 };
 
-export async function handleLogin({ email, password, setSubmitted, setAuthError, setLoading, push }: LoginArgs) {
+export async function handleLogin({
+  email,
+  password,
+  setSubmitted,
+  setAuthError,
+  setLoading,
+  push,
+}: LoginArgs) {
   setSubmitted(true);
   setAuthError("");
 
@@ -37,7 +50,14 @@ export async function handleLogin({ email, password, setSubmitted, setAuthError,
   }
 }
 
-export async function handleRegister({ setSubmitted, setAuthError, setLoading, email, password, confirmPassword }: RegisterArgs) {
+export async function handleRegister({
+  setSubmitted,
+  setAuthError,
+  setLoading,
+  email,
+  password,
+  confirmPassword,
+}: RegisterArgs) {
   setSubmitted(true);
   setAuthError("");
 
@@ -64,7 +84,11 @@ export async function handleRegister({ setSubmitted, setAuthError, setLoading, e
   }
 }
 
-export async function handleGoogleLogin({ setAuthError, setLoading, push }: Pick<LoginArgs, "setAuthError" | "setLoading" | "push">) {
+export async function handleGoogleLogin({
+  setAuthError,
+  setLoading,
+  push,
+}: Pick<LoginArgs, "setAuthError" | "setLoading" | "push">) {
   setAuthError("");
   setLoading(true);
 

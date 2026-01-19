@@ -1,8 +1,5 @@
-import { GoogleLogo } from "@/components/icons";
-import { IconSvgProps } from "@/types";
 import { Button } from "@heroui/button";
-import { FC, ReactElement } from "react";
-import { text } from "stream/consumers";
+import { ReactElement } from "react";
 
 type Props = {
   authHandler: () => Promise<void>;
@@ -13,7 +10,11 @@ type Props = {
 export default function AuthInput({ authHandler, text, icon }: Props) {
   return (
     <div className="w-full">
-      <Button startContent={icon} onPress={authHandler} className="text-xs font-light">
+      <Button
+        className="text-xs font-light"
+        startContent={icon}
+        onPress={authHandler}
+      >
         {text}
       </Button>
     </div>

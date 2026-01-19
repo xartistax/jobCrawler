@@ -1,26 +1,37 @@
 "use client";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import { Navbar as HeroUINavbar, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarBrand, NavbarItem, NavbarMenuItem } from "@heroui/navbar";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@heroui/dropdown";
+import {
+  Navbar as HeroUINavbar,
+  NavbarContent,
+  NavbarMenu,
+  NavbarMenuToggle,
+  NavbarBrand,
+  NavbarItem,
+  NavbarMenuItem,
+} from "@heroui/navbar";
 import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
 import { link as linkStyles } from "@heroui/theme";
 import clsx from "clsx";
 import { Tooltip } from "@heroui/tooltip";
-import { siteConfig, siteLinks } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { GithubIcon, LinkedinIcon, SearchIcon, Logo, OffIcon } from "@/components/icons";
-
-import { useUser } from "@/app/context/user";
-
-import AvatarWrapper from "./avatar-wrapper";
-import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDisclosure } from "@heroui/modal";
+
+import AvatarWrapper from "./avatar-wrapper";
 import ThemeModal from "./modal";
+
+import { siteConfig, siteLinks } from "@/config/site";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { GithubIcon, LinkedinIcon, Logo, OffIcon } from "@/components/icons";
+import { useUser } from "@/app/context/user";
+import { auth } from "@/lib/firebase";
 
 export const Navbar = () => {
   const { user, isLoading } = useUser();
@@ -28,24 +39,26 @@ export const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const searchInput = (
-    <Input
-      aria-label="Suchen"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Suchen..."
-      startContent={<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />}
-      type="search"
-    />
-  );
+  // const searchInput = (
+  //   <Input
+  //     aria-label="Suchen"
+  //     classNames={{
+  //       inputWrapper: "bg-default-100",
+  //       input: "text-sm",
+  //     }}
+  //     endContent={
+  //       <Kbd className="hidden lg:inline-block" keys={["command"]}>
+  //         K
+  //       </Kbd>
+  //     }
+  //     labelPlacement="outside"
+  //     placeholder="Suchen..."
+  //     startContent={
+  //       <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
+  //     }
+  //     type="search"
+  //   />
+  // );
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -56,15 +69,27 @@ export const Navbar = () => {
 
   const showUserUI = mounted && !isLoading && !!user;
 
-  const navItems = showUserUI ? siteConfig.navItemsUser : siteConfig.navItemsUser;
-  const navMenuItems = showUserUI ? siteConfig.navMenuItemsUser : siteConfig.navMenuItemsUser;
+  const navItems = showUserUI
+    ? siteConfig.navItemsUser
+    : siteConfig.navItemsUser;
+  const navMenuItems = showUserUI
+    ? siteConfig.navMenuItemsUser
+    : siteConfig.navMenuItemsUser;
 
   return (
     <>
-      <HeroUINavbar maxWidth="xl" position="sticky" isBlurred className="bg-background/60 backdrop-blur-md">
+      <HeroUINavbar
+        isBlurred
+        className="bg-background/60 backdrop-blur-md"
+        maxWidth="xl"
+        position="sticky"
+      >
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
-            <Link className="flex justify-start items-center gap-1 text-inherit" href="/">
+            <Link
+              className="flex justify-start items-center gap-1 text-inherit"
+              href="/"
+            >
               <Logo />
               <p className="font-bold text-inherit">{siteConfig.name}</p>
             </Link>
@@ -74,7 +99,10 @@ export const Navbar = () => {
             {navItems.map((item) => (
               <NavbarItem key={item.href}>
                 <Link
-                  className={clsx(linkStyles({ color: "foreground" }), "data-[active=true]:text-primary data-[active=true]:font-light text-xs")}
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "data-[active=true]:text-primary data-[active=true]:font-light text-xs",
+                  )}
                   href={item.href}
                 >
                   {item.label}
@@ -84,8 +112,11 @@ export const Navbar = () => {
 
             <NavbarItem>
               <Link
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-light text-xs cursor-pointer",
+                )}
                 onPress={onOpen}
-                className={clsx(linkStyles({ color: "foreground" }), "data-[active=true]:text-primary data-[active=true]:font-light text-xs cursor-pointer")}
               >
                 Crawler
               </Link>
@@ -93,7 +124,10 @@ export const Navbar = () => {
           </ul>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+        <NavbarContent
+          className="hidden sm:flex basis-1/5 sm:basis-full"
+          justify="end"
+        >
           <NavbarItem className="hidden sm:flex gap-2">
             {/* deine icons/theme switch bleiben immer gleich */}
             <Tooltip content="Github - Demian Füglistaler">
@@ -119,19 +153,33 @@ export const Navbar = () => {
                     <AvatarWrapper />
                   </Link>
                 </DropdownTrigger>
-                <DropdownMenu aria-label="User menu" itemClasses={{ base: "gap-4" }}>
+                <DropdownMenu
+                  aria-label="User menu"
+                  itemClasses={{ base: "gap-4" }}
+                >
                   <DropdownItem key="profile" className="h-14 gap-2">
                     <p className="font-semibold">Angemeldet als</p>
                     <p className="font-light text-xs">{user.email}</p>
                   </DropdownItem>
 
-                  <DropdownItem startContent={<OffIcon />} key="logout" description="Abmelden vom Benutzerkonto" color="danger" onClick={handleLogout}>
+                  <DropdownItem
+                    key="logout"
+                    color="danger"
+                    description="Abmelden vom Benutzerkonto"
+                    startContent={<OffIcon />}
+                    onClick={handleLogout}
+                  >
                     Abmelden
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             ) : (
-              <Button as={Link} href="/login" variant="solid" className="text-xs font-light">
+              <Button
+                as={Link}
+                className="text-xs font-light"
+                href="/login"
+                variant="solid"
+              >
                 Anmelden
               </Button>
             )}
@@ -167,11 +215,20 @@ export const Navbar = () => {
             ))}
             <NavbarMenuItem>
               {!mounted || isLoading ? null : user ? (
-                <Link color="danger" className="w-full text-sm font-light cursor-pointer" onPress={handleLogout}>
+                <Link
+                  className="w-full text-sm font-light cursor-pointer"
+                  color="danger"
+                  onPress={handleLogout}
+                >
                   Abmelden
                 </Link>
               ) : (
-                <Button as={Link} href="/login" variant="solid" className="w-full text-sm font-light">
+                <Button
+                  as={Link}
+                  className="w-full text-sm font-light"
+                  href="/login"
+                  variant="solid"
+                >
                   Anmelden
                 </Button>
               )}

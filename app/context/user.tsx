@@ -7,8 +7,9 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { auth } from "@/lib/firebase";
 import { User } from "firebase/auth";
+
+import { auth } from "@/lib/firebase";
 
 type UserContextType = {
   user: User | null;
@@ -29,6 +30,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setUser(u);
       setIsLoading(false);
     });
+
     return () => unsubscribe();
   }, []);
 

@@ -40,17 +40,22 @@ export default function LoginForm({
       <div className="flex flex-col w-full gap-4">
         <Input
           isRequired
-          type="email"
-          name="email"
-          label="E-Mail"
-          labelPlacement="outside"
-          placeholder="Gib deine E-Mail-Adresse ein"
-          isInvalid={emailFieldError}
-          errorMessage={emailFieldError ? "Bitte gib eine gültige E-Mail-Adresse ein" : undefined}
           classNames={{
             label: "text-xs font-light",
-            input: "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
+            input:
+              "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
           }}
+          errorMessage={
+            emailFieldError
+              ? "Bitte gib eine gültige E-Mail-Adresse ein"
+              : undefined
+          }
+          isInvalid={emailFieldError}
+          label="E-Mail"
+          labelPlacement="outside"
+          name="email"
+          placeholder="Gib deine E-Mail-Adresse ein"
+          type="email"
           onChange={(e) => {
             setEmail(e.target.value);
             setAuthError("");
@@ -59,17 +64,20 @@ export default function LoginForm({
 
         <Input
           isRequired
-          type="password"
-          name="password"
-          label="Passwort"
-          labelPlacement="outside"
-          placeholder="Gib dein Passwort ein"
-          isInvalid={passwordFieldError}
-          errorMessage={passwordFieldError ? "Bitte gib dein Passwort ein" : undefined}
           classNames={{
             label: "text-xs font-light",
-            input: "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
+            input:
+              "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
           }}
+          errorMessage={
+            passwordFieldError ? "Bitte gib dein Passwort ein" : undefined
+          }
+          isInvalid={passwordFieldError}
+          label="Passwort"
+          labelPlacement="outside"
+          name="password"
+          placeholder="Gib dein Passwort ein"
+          type="password"
           onChange={(e) => {
             setPassword(e.target.value);
             setAuthError("");
@@ -80,11 +88,18 @@ export default function LoginForm({
       </div>
 
       <div className="flex items-center gap-4">
-        <Button type="submit" size="md" variant="solid" isLoading={loading} isDisabled={loading || !email || !password} className="text-xs font-light">
+        <Button
+          className="text-xs font-light"
+          isDisabled={loading || !email || !password}
+          isLoading={loading}
+          size="md"
+          type="submit"
+          variant="solid"
+        >
           Anmelden
         </Button>
 
-        <Link href="/register" className="text-xs">
+        <Link className="text-xs" href="/register">
           Registrierung
         </Link>
       </div>

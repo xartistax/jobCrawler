@@ -4,6 +4,7 @@ import { adminAuth } from "@/lib/firebaseAdmin";
 export async function POST(req: Request) {
   try {
     const authHeader = req.headers.get("authorization");
+
     if (!authHeader?.startsWith("Bearer ")) {
       return Response.json({ error: "Missing token" }, { status: 401 });
     }
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
     const { uid, startedAt } = body;
 
     if (uid !== uidDecoded) {
-      return console.log("someting went wrong");
+      throw Error("someting went wrong");
     }
 
     const res = await fetch(`${fastAPI}/start`, {
@@ -29,11 +30,17 @@ export async function POST(req: Request) {
     const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
-      return Response.json({ error: "Crawler API failed", details: data }, { status: res.status });
+      return Response.json(
+        { error: "Crawler API failed", details: data },
+        { status: res.status },
+      );
     }
 
     return Response.json({ data });
   } catch (err: any) {
-    return Response.json({ error: err?.message ?? "Internal error" }, { status: 500 });
+    return Response.json(
+      { error: err?.message ?? "Internal error" },
+      { status: 500 },
+    );
   }
 }

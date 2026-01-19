@@ -1,17 +1,15 @@
 import * as React from "react";
-
-import { IconSvgProps } from "@/types";
-
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
-
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
-import clsx from "clsx";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 
+import { IconSvgProps } from "@/types";
+
+config.autoAddCss = false;
 export interface HeartIconProps {
   filled?: boolean; // true = Herz gefüllt
   size?: number;
@@ -23,14 +21,13 @@ export const HeroUILogo: React.FC<IconSvgProps> = ({
   size = 18,
   width,
   height,
-  ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    height={height ?? size}
     viewBox="0 0 24 24"
     width={width ?? size}
-    height={height ?? size}
-    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path d="M6.353 0h11.294A6.353 6.353 0 0 1 24 6.353v11.294A6.353 6.353 0 0 1 17.647 24H6.353A6.353 6.353 0 0 1 0 17.647V6.353A6.353 6.353 0 0 1 6.353 0m7.755 6.913h-.933v6.702a2.9 2.9 0 0 1-.362 1.45c-.24.424-.596.77-1.025 1q-.664.366-1.553.365q-.888 0-1.55-.364a2.6 2.6 0 0 1-1.024-1a2.87 2.87 0 0 1-.365-1.45V6.912h-.933v6.767a3.56 3.56 0 0 0 .489 1.862c.327.547.798.994 1.362 1.292q.873.474 2.021.474q1.154 0 2.024-.471a3.47 3.47 0 0 0 1.36-1.293c.33-.565.5-1.21.49-1.864zm3.648 10.22V6.914h-.933v10.22h.933Z" />
   </svg>
@@ -43,16 +40,16 @@ export const GithubLogo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    height={height ?? size}
     viewBox="0 0 128 128"
     width={width ?? size}
-    height={height ?? size}
+    xmlns="http://www.w3.org/2000/svg"
   >
     <g fill="currentColor" {...props}>
       <path
-        fillRule="evenodd"
         clipRule="evenodd"
         d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"
+        fillRule="evenodd"
       />
       <path d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0" />
     </g>
@@ -66,15 +63,15 @@ export const GoogleLogo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    height={height ?? size}
     viewBox="0 0 640 640"
     width={width ?? size}
-    height={height ?? size}
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <path
-      fill="currentColor"
       d="M564 325.8C564 467.3 467.1 568 324 568C186.8 568 76 457.2 76 320C76 182.8 186.8 72 324 72C390.8 72 447 96.5 490.3 136.9L422.8 201.8C334.5 116.6 170.3 180.6 170.3 320C170.3 406.5 239.4 476.6 324 476.6C422.2 476.6 459 406.2 464.8 369.7L324 369.7L324 284.4L560.1 284.4C562.4 297.1 564 309.3 564 325.8z"
+      fill="currentColor"
     />
   </svg>
 );
@@ -83,17 +80,16 @@ export const FirebaseLogo: React.FC<IconSvgProps> = ({
   size = 36,
   width,
   height,
-  ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    height={height ?? size}
     viewBox="0 0 128 128"
     width={width ?? size}
-    height={height ?? size}
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill="currentColor"
       d="M27.35 80.52l10.68-68.44c.37-2.33 3.5-2.89 4.6-.8l11.48 21.48-26.76 47.76zm75.94 16.63L93.1 34.11c-.31-1.96-2.76-2.76-4.17-1.35L24.71 97.15l35.54 19.95a7.447 7.447 0 007.18 0l35.86-19.95zm-28.85-55L66.21 26.5c-.92-1.78-3.44-1.78-4.36 0L25.7 90.95l48.74-48.8z"
+      fill="currentColor"
     />
   </svg>
 );
@@ -102,14 +98,13 @@ export const PythonLogo: React.FC<IconSvgProps> = ({
   size = 36,
   width,
   height,
-  ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
-    width={width ?? size}
     height={height ?? size}
     viewBox="0 0 512 512"
+    width={width ?? size}
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path d="M314,36.38c-18.59-3.06-45.8-4.47-64.27-4.38a311.09,311.09,0,0,0-51.66,4.38c-45.74,8-54.07,24.7-54.07,55.54V128H256v16H107.62C66.06,144,32.33,193.67,32,255.12c0,.29,0,.58,0,.88a162.91,162.91,0,0,0,3.13,32c9.29,46.28,38.23,80,72.49,80H128V314c0-31.3,20.84-59.95,55-66.1l9.87-1.23H314a56.05,56.05,0,0,0,15.06-2A52.48,52.48,0,0,0,368,193.68V91.92C368,63,343.32,41.19,314,36.38ZM194.93,105.5a20.37,20.37,0,1,1,20.3-20.3A20.29,20.29,0,0,1,194.93,105.5Z" />
     <path d="M475.28,217c-10.7-42.61-38.41-73-70.9-73H386.67v47.45c0,39.57-26,68.22-57.74,73.13a63.54,63.54,0,0,1-9.69.75H198.08a60,60,0,0,0-15.23,1.95C160.54,273.14,144,291.7,144,315.77V417.54c0,29,29.14,46,57.73,54.31,34.21,9.95,71.48,11.75,112.42,0,27.19-7.77,53.85-23.48,53.85-54.31V384H256V368H404.38c29.44,0,54.95-24.93,67.45-61.31A156.83,156.83,0,0,0,480,256,160.64,160.64,0,0,0,475.28,217ZM316.51,404a20.37,20.37,0,1,1-20.3,20.3A20.29,20.29,0,0,1,316.51,404Z" />
@@ -123,16 +118,16 @@ export const TypeScriptLogo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    height={height ?? size}
     viewBox="0 0 128 128"
     width={width ?? size}
-    height={height ?? size}
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <path fill="transparent" d="M22.67 47h99.67v73.67H22.67z" />
+    <path d="M22.67 47h99.67v73.67H22.67z" fill="transparent" />
     <path
-      fill="currentColor"
       d="M1.5 63.91v62.5h125v-125H1.5zm100.73-5a15.56 15.56 0 017.82 4.5 20.58 20.58 0 013 4c0 .16-5.4 3.81-8.69 5.85-.12.08-.6-.44-1.13-1.23a7.09 7.09 0 00-5.87-3.53c-3.79-.26-6.23 1.73-6.21 5a4.58 4.58 0 00.54 2.34c.83 1.73 2.38 2.76 7.24 4.86 8.95 3.85 12.78 6.39 15.16 10 2.66 4 3.25 10.46 1.45 15.24-2 5.2-6.9 8.73-13.83 9.9a38.32 38.32 0 01-9.52-.1 23 23 0 01-12.72-6.63c-1.15-1.27-3.39-4.58-3.25-4.82a9.34 9.34 0 011.15-.73L82 101l3.59-2.08.75 1.11a16.78 16.78 0 004.74 4.54c4 2.1 9.46 1.81 12.16-.62a5.43 5.43 0 00.69-6.92c-1-1.39-3-2.56-8.59-5-6.45-2.78-9.23-4.5-11.77-7.24a16.48 16.48 0 01-3.43-6.25 25 25 0 01-.22-8c1.33-6.23 6-10.58 12.82-11.87a31.66 31.66 0 019.49.26zm-29.34 5.24v5.12H56.66v46.23H45.15V69.26H28.88v-5a49.19 49.19 0 01.12-5.17C29.08 59 39 59 51 59h21.83z"
+      fill="currentColor"
     />
   </svg>
 );
@@ -144,10 +139,10 @@ export const ReactLogo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    height={height ?? size}
     viewBox="0 0 128 128"
     width={width ?? size}
-    height={height ?? size}
+    xmlns="http://www.w3.org/2000/svg"
   >
     <g fill="currentColor" {...props}>
       <circle cx="64" cy="64" r="11.4" />
@@ -163,15 +158,15 @@ export const NextJsLogo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    height={height ?? size}
     viewBox="0 0 128 128"
     width={width ?? size}
-    height={height ?? size}
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <path
-      fill="currentColor"
       d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.5-11.3V41.8h7.5v42.8z"
+      fill="currentColor"
     />
   </svg>
 );
@@ -208,8 +203,8 @@ export const HeartIcon: React.FC<{ filled?: boolean; size?: number }> = ({
       className={clsx(filled && "fill-current", "group-hover:fill-current")}
       fill={filled ? "currentColor" : "none"} // gefüllt nur wenn saved/filled
       height={size || 18}
-      width={size || 18}
       viewBox="0 0 24 24"
+      width={size || 18}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
@@ -249,34 +244,29 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
 
 export const LinkedinIcon = () => {
   return (
-    <FontAwesomeIcon icon={faLinkedin} className="text-default-500" size="lg" />
+    <FontAwesomeIcon className="text-default-500" icon={faLinkedin} size="lg" />
   );
 };
 
 export const OffIcon = () => {
   return (
-    <FontAwesomeIcon icon={faPowerOff} className="text-current" size="sm" />
+    <FontAwesomeIcon className="text-current" icon={faPowerOff} size="sm" />
   );
 };
 
-export const UserIcon = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}: IconSvgProps) => (
+export const UserIcon = ({}: IconSvgProps) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
     className="size-6"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path
+      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
     />
   </svg>
 );

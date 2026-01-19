@@ -1,14 +1,13 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
+import { UserProvider } from "./context/user";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { UserProvider } from "./context/user";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -29,17 +28,28 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html suppressHydrationWarning lang="de">
       <head />
-      <body className={clsx("min-h-screen text-foreground font-sans antialiased", fontSans.variable)}>
+      <body
+        className={clsx(
+          "min-h-screen text-foreground font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <UserProvider>
             <div className="relative flex min-h-screen flex-col">
               <Navbar />
 
-              <main className="container mx-auto max-w-7xl flex-1 px-6">{children}</main>
+              <main className="container mx-auto max-w-7xl flex-1 px-6">
+                {children}
+              </main>
 
               <Footer />
             </div>

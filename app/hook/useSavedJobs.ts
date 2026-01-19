@@ -1,5 +1,6 @@
+import { error } from "console";
+
 import { useState, useEffect } from "react";
-import { db } from "@/lib/firebase";
 import {
   onSnapshot,
   collection,
@@ -9,7 +10,10 @@ import {
   getDoc,
   orderBy,
 } from "firebase/firestore";
+
 import { useUser } from "../context/user";
+
+import { db } from "@/lib/firebase";
 import { Job, SavedJob } from "@/types";
 
 export function useSavedJobs() {
@@ -22,6 +26,7 @@ export function useSavedJobs() {
     if (!user) {
       setSavedJobs([]);
       setLoading(false);
+
       return;
     }
 
@@ -30,7 +35,7 @@ export function useSavedJobs() {
     const q = query(
       collection(db, "savedJobs"),
       where("userId", "==", user.uid),
-      orderBy("createdAt", "desc")
+      orderBy("createdAt", "desc"),
     );
 
     let cancelled = false;
@@ -43,14 +48,15 @@ export function useSavedJobs() {
           const savedJobData = docSnap.data() as SavedJob;
 
           const jobDoc = await getDoc(doc(db, "jobs", savedJobData.jobId));
+
           if (jobDoc.exists()) {
             const jobData = jobDoc.data() as Job;
-            const { id: _id, ...jobFields } = jobData;
+            const { ...jobFields } = jobData;
 
             results.push({
               ...savedJobData,
               id: docSnap.id, // savedJobs doc id
-              job: { id: jobDoc.id, ...jobFields },
+              job: { ...jobFields, id: jobDoc.id },
             });
           }
         }
@@ -61,9 +67,10 @@ export function useSavedJobs() {
         }
       } catch (e) {
         if (!cancelled) {
-          console.error("useSavedJobs onSnapshot error:", e);
-          setLoading(false);
+          throw error("useSavedJobs onSnapshot error:", e);
         }
+      } finally {
+        setLoading(false);
       }
     });
 

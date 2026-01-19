@@ -1,4 +1,12 @@
-import { FirebaseLogo, GithubLogo, HeroUILogo, NextJsLogo, PythonLogo, ReactLogo, TypeScriptLogo } from "@/components/icons";
+import {
+  FirebaseLogo,
+  GithubLogo,
+  HeroUILogo,
+  NextJsLogo,
+  PythonLogo,
+  ReactLogo,
+  TypeScriptLogo,
+} from "@/components/icons";
 import { FrontIconNavItem, NavItem } from "@/types/index";
 
 export type SiteConfig = typeof siteConfig;

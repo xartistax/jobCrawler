@@ -1,12 +1,16 @@
 "use client";
 
-import { GoogleLogo } from "@/components/icons";
 import { Card, CardBody } from "@heroui/card";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+import { GoogleLogo } from "@/components/icons";
 import LoginForm from "@/components/auth/forms/login";
 import AuthInput from "@/components/auth/authInputs/authInputs";
-import { handleGoogleLogin, handleLogin } from "@/components/auth/auth-handlers";
+import {
+  handleGoogleLogin,
+  handleLogin,
+} from "@/components/auth/auth-handlers";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,19 +45,23 @@ export default function Login() {
     <section className="min-h-screen flex items-center justify-center md:py-10">
       <Card className="max-w-full p-4 pb-6">
         <CardBody className="px-3 py-0 text-small text-default-400 gap-12">
-          <AuthInput authHandler={onGoogleLogin} text="Google Login" icon={<GoogleLogo />} />
+          <AuthInput
+            authHandler={onGoogleLogin}
+            icon={<GoogleLogo />}
+            text="Google Login"
+          />
 
           <LoginForm
-            handleLogin={onSubmitLogin}
-            emailFieldError={emailFieldError}
-            passwordFieldError={passwordFieldError}
-            setEmail={setEmail}
-            setAuthError={setAuthError}
-            setPassword={setPassword}
             authError={authError}
-            loading={loading}
             email={email}
+            emailFieldError={emailFieldError}
+            handleLogin={onSubmitLogin}
+            loading={loading}
             password={password}
+            passwordFieldError={passwordFieldError}
+            setAuthError={setAuthError}
+            setEmail={setEmail}
+            setPassword={setPassword}
           />
         </CardBody>
       </Card>

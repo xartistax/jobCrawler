@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState, ReactNode } from "react";
-import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@heroui/spinner";
+
+import { auth } from "@/lib/firebase";
 
 type AuthGuardProps = {
   children: ReactNode;
@@ -21,6 +22,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
         setLoading(false);
       }
     });
+
     return () => unsubscribe();
   }, [router]);
 
@@ -30,5 +32,6 @@ export default function AuthGuard({ children }: AuthGuardProps) {
         <Spinner color="default" />
       </section>
     );
+
   return <>{children}</>;
 }

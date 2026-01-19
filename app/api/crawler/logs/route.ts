@@ -6,13 +6,19 @@ export async function GET(req: Request) {
   const startedAt = searchParams.get("startedAt");
 
   if (!uid || !startedAt) {
-    return Response.json({ error: "uid and startedAt required" }, { status: 400 });
+    return Response.json(
+      { error: "uid and startedAt required" },
+      { status: 400 },
+    );
   }
 
-  const upstream = await fetch(`${fastAPI}/logs/stream?uid=${encodeURIComponent(uid)}&startedAt=${encodeURIComponent(startedAt)}`, {
-    headers: { Accept: "text/event-stream" },
-    cache: "no-store",
-  });
+  const upstream = await fetch(
+    `${fastAPI}/logs/stream?uid=${encodeURIComponent(uid)}&startedAt=${encodeURIComponent(startedAt)}`,
+    {
+      headers: { Accept: "text/event-stream" },
+      cache: "no-store",
+    },
+  );
 
   return new Response(upstream.body, {
     status: upstream.status,
