@@ -1,9 +1,0 @@
-2026-01-19 15:31:13 [scrapy] INFO: Scrapy 2.14.0 started (bot: jobsCrawler)
-2026-01-19 15:33:16 [jobsCH] INFO: 10d17430-7bb8-40f8-87f2-ff56e9cb5ef3 → Kinder- und Jugendbeauftragte/r 
-2026-01-19 15:33:17 [jobsCH] INFO: 798710b2-e6a3-4737-ad9f-821a2d405344 → Mitarbeitende/r Administration (80-100 %) 
-2026-01-19 15:33:20 [jobsCH] INFO: 87e7b3d3-18a4-4bf7-a54d-c4fa44698f3f → Software Engineer (w/m/d) 
-2026-01-19 15:33:32 [jobsCH] INFO: c87cf149-3bea-4fbb-8c59-5e6ef4127b1d → Senior Accountant / Controller (m/w/d, 80-100%) 
-2026-01-19 15:33:33 [jobsCH] INFO: b12e95da-4524-4a86-b15b-330aa10df56a → International Key Account Manager 
-2026-01-19 15:33:34 [jobsCH] INFO: 390b9118-4a6e-40ab-97c3-e5d5b7479681 → Sponsoring- & Fundraising Profi (m/w/d) 80-100% 
-2026-01-19 15:33:36 [jobsCH] INFO: 8839c0da-e4a8-4bfc-bc1e-4bf092b07b3f → Pflegehilfe SRK (m/w/d) Langzeitpflege 
-2026-01-19 15:33:40 [jobsCH] INFO: Scrapy 2.14.0 reached its limit after 7 items → stopped crawling.
