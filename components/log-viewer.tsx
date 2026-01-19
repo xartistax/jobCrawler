@@ -11,17 +11,14 @@ type Props = {
   user: User;
 };
 
-export default function LogViewer({
-  active,
-  setActive,
-  user,
-  startedAt,
-}: Props) {
+export default function LogViewer({ active, setActive, user, startedAt }: Props) {
   const preRef = useRef<HTMLPreElement>(null);
   const esRef = useRef<EventSource | null>(null);
-  const uid = user.uid;
 
   useEffect(() => {
+    if (!user) return;
+    const uid = user.uid;
+
     if (!active) {
       esRef.current?.close();
       esRef.current = null;
@@ -30,9 +27,7 @@ export default function LogViewer({
     }
     const params = new URLSearchParams({ uid, startedAt });
 
-    const es = new EventSource(
-      `${baseURL}/api/crawler/logs?${params.toString()}`,
-    );
+    const es = new EventSource(`${baseURL}/api/crawler/logs?${params.toString()}`);
 
     esRef.current = es;
 
@@ -60,10 +55,5 @@ export default function LogViewer({
     };
   }, [active]);
 
-  return (
-    <pre
-      ref={preRef}
-      className="h-50 overflow-auto bg-black text-green-400 text-xs font-extralight p-3 rounded"
-    />
-  );
+  return <pre ref={preRef} className="h-50 overflow-auto bg-black text-green-400 text-xs font-extralight p-3 rounded" />;
 }
