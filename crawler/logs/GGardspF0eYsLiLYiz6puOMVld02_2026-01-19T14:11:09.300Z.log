@@ -1,0 +1,34 @@
+2026-01-19 15:11:13 [scrapy] INFO: Scrapy 2.14.0 started (bot: jobsCrawler)
+2026-01-19 15:11:25 [scrapy] INFO: f528ef2e-2523-4f6a-9855-9e48d77c5f8c already exists → dropped
+2026-01-19 15:11:25 [scrapy] INFO: 68c50f7e-4643-4efd-9e11-3bdce5e41e74 already exists → dropped
+2026-01-19 15:11:27 [scrapy] INFO: b526ff60-440a-466c-9cbf-16ac8786600e already exists → dropped
+2026-01-19 15:11:29 [scrapy] INFO: ebf16cc6-6ceb-4e0c-ae01-6be5f353d855 already exists → dropped
+2026-01-19 15:11:36 [scrapy] INFO: 92e8821a-56f3-4d2e-af3a-e2d0cf239993 already exists → dropped
+2026-01-19 15:11:41 [scrapy] INFO: d07c5443-a665-42c7-b1c9-dee2cc2c25e1 already exists → dropped
+2026-01-19 15:11:44 [scrapy] INFO: 0b2cfe5a-d8d9-447b-95fe-df933fab29cd already exists → dropped
+2026-01-19 15:11:48 [scrapy] INFO: 437acc48-baa4-4782-ae09-deaf7242ccb3 already exists → dropped
+2026-01-19 15:11:50 [scrapy] INFO: bbaea1e3-2205-4c5b-ae49-955796b428ea already exists → dropped
+2026-01-19 15:11:52 [scrapy] INFO: 05069698-6a88-402b-80f8-f92bae6e77bd already exists → dropped
+2026-01-19 15:11:55 [scrapy] INFO: 104acbf0-19b7-418a-be05-6cde5d0d7f13 already exists → dropped
+2026-01-19 15:12:01 [scrapy] INFO: e8de5f23-4902-4637-bff2-f7edbd9300e8 already exists → dropped
+2026-01-19 15:12:03 [scrapy] INFO: d585f79f-da19-44f4-aa2b-b4e23f89d240 already exists → dropped
+2026-01-19 15:12:05 [scrapy] INFO: d404e634-6d47-4b68-b593-fde59ec5d92a already exists → dropped
+2026-01-19 15:12:08 [scrapy] INFO: 1cff2973-2ddc-468a-83de-0daa0f52a12e already exists → dropped
+2026-01-19 15:12:17 [scrapy] INFO: c43859b0-d7df-4c2a-9b9c-6e073aa51b33 already exists → dropped
+2026-01-19 15:12:18 [scrapy] INFO: 702da75d-3d20-476b-aa1b-bf74e786a4f8 already exists → dropped
+2026-01-19 15:12:19 [scrapy] INFO: 55aa1eb8-cec1-495c-a005-1f8f0cf14346 already exists → dropped
+2026-01-19 15:12:20 [scrapy] INFO: 87943ce9-e0d7-4936-b291-9ebd93faa32e already exists → dropped
+2026-01-19 15:12:28 [scrapy] INFO: c097081b-3e0f-49c7-9c14-35cb6590d9e5 already exists → dropped
+2026-01-19 15:12:29 [scrapy] INFO: 1216c9de-bbcb-457f-bf08-2c04f39c9147 already exists → dropped
+2026-01-19 15:12:32 [scrapy] INFO: 3f896ed4-80be-4ea3-843f-97768e0fbee2 already exists → dropped
+2026-01-19 15:12:36 [scrapy] INFO: f5eb52ca-fb01-4198-87be-7c634670aaee already exists → dropped
+2026-01-19 15:12:40 [scrapy] INFO: 2bb1f5ce-39dc-40a0-a5d8-abe6ac4833c4 already exists → dropped
+2026-01-19 15:12:41 [scrapy] INFO: 58aed767-bc48-4c69-b53c-2ac6fa57b9a2 already exists → dropped
+2026-01-19 15:12:44 [jobsCH] INFO: b8d0caf1-7050-4b89-940f-ae5b8a4a1606 → Fachperson Nachtwache (m/w/d) 60-70% 
+2026-01-19 15:12:49 [jobsCH] INFO: 16755591-4515-4747-8b00-5f51355599b7 → Crew Mitarbeiter/in McDonald`s Aarberg (Teilzeit) 
+2026-01-19 15:12:53 [jobsCH] INFO: 33c5339b-ef82-436c-b271-677fa08353be → Betriebsmechaniker / Techniker Münsterlingen (m/w/d) 100% 
+2026-01-19 15:12:56 [jobsCH] INFO: 426404f2-2f50-4705-82f0-66db9f9260ba → Restaurant Metropol, Chef de Service w/m 
+2026-01-19 15:12:59 [jobsCH] INFO: aa80e841-061c-44bd-96c2-f8b5e28e2a21 → Verkaufsspezialist/-in Objektküchen Zentralschweiz 
+2026-01-19 15:13:04 [jobsCH] INFO: af6d3b21-cc5c-461b-b5e3-f5d453842383 → Sales Agent Telekommunikation 100%) - Region Chur 
+2026-01-19 15:13:06 [jobsCH] INFO: f3e97ef8-fb53-40c3-a698-523caf4c9230 → Bau-/Projektleiter/in 80-100% 
+2026-01-19 15:13:11 [jobsCH] INFO: Scrapy 2.14.0 reached its limit after 7 items → stopped crawling.

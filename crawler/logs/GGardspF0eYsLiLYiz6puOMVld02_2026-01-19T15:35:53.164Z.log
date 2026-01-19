@@ -1,0 +1,9 @@
+2026-01-19 16:35:58 [scrapy.utils.log] INFO: Scrapy 2.14.0 started (bot: jobsCrawler)
+2026-01-19 16:36:10 [jobsCH] INFO: Mitarbeiter/-in für unseren Pflegepool gespeichert 
+2026-01-19 16:36:11 [jobsCH] INFO: Kalkulator von Bauausschreibungen 100% (m/w/d) gespeichert 
+2026-01-19 16:36:11 [jobsCH] INFO: System Engineer gespeichert 
+2026-01-19 16:36:13 [jobsCH] INFO: Treuhänder (m/w/d) mit eidg. Fachausweis 80 % - 100 % in Luzern gespeichert 
+2026-01-19 16:36:22 [jobsCH] INFO: Dipl. Pflegefachfrau / Pflegefachmann mit Berufsbildner-Funktion (a) 80-100% gespeichert 
+2026-01-19 16:36:29 [jobsCH] INFO: Fachfrau/ Fachmann für Klinische Surveillance (a) 40-60% gespeichert 
+2026-01-19 16:36:30 [jobsCH] INFO: Fachperson Gesundheit, Standort Dorflinde gespeichert 
+2026-01-19 16:36:36 [jobsCH] INFO: Scrapy 2.14.0 reached its limit after 7 items → stopped crawling.
