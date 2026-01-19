@@ -53,7 +53,7 @@ export function useSavedJobs() {
         }
       } catch (e) {
         if (!cancelled) {
-          throw Error("useSavedJobs onSnapshot error:", e);
+          throw Error("useSavedJobs onSnapshot error:", e as Error);
         }
       } finally {
         setLoading(false);
