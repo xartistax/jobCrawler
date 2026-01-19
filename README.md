@@ -7,9 +7,9 @@ This application combines a modern Next.js frontend with Firebase Authentication
 
 
 - [Next.js 14](https://nextjs.org/docs/getting-started)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Python](https://www.python.org/)
 - [Firebase](https://console.firebase.google.com/)
-- [TypeScript](https://www.typescriptlang.org/)
 - [HeroUI v2](https://heroui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
