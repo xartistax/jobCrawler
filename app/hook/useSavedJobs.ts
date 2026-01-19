@@ -1,15 +1,5 @@
-import { error } from "console";
-
 import { useState, useEffect } from "react";
-import {
-  onSnapshot,
-  collection,
-  query,
-  where,
-  doc,
-  getDoc,
-  orderBy,
-} from "firebase/firestore";
+import { onSnapshot, collection, query, where, doc, getDoc, orderBy } from "firebase/firestore";
 
 import { useUser } from "../context/user";
 
@@ -32,11 +22,7 @@ export function useSavedJobs() {
 
     setLoading(true);
 
-    const q = query(
-      collection(db, "savedJobs"),
-      where("userId", "==", user.uid),
-      orderBy("createdAt", "desc"),
-    );
+    const q = query(collection(db, "savedJobs"), where("userId", "==", user.uid), orderBy("createdAt", "desc"));
 
     let cancelled = false;
 
@@ -67,7 +53,7 @@ export function useSavedJobs() {
         }
       } catch (e) {
         if (!cancelled) {
-          throw error("useSavedJobs onSnapshot error:", e);
+          throw Error("useSavedJobs onSnapshot error:", e);
         }
       } finally {
         setLoading(false);
