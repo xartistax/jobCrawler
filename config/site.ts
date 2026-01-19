@@ -74,10 +74,6 @@ export const siteConfig: {
       label: "Favorites",
       href: "/dashboard/saved",
     },
-    {
-      label: "Crawler",
-      href: "/crawler",
-    },
   ],
 
   frontIconNav: [
