@@ -1,12 +1,4 @@
-import {
-  FirebaseLogo,
-  GithubLogo,
-  HeroUILogo,
-  NextJsLogo,
-  PythonLogo,
-  ReactLogo,
-  TypeScriptLogo,
-} from "@/components/icons";
+import { FirebaseLogo, GithubLogo, HeroUILogo, NextJsLogo, PythonLogo, ReactLogo, TypeScriptLogo } from "@/components/icons";
 import { FrontIconNavItem, NavItem } from "@/types/index";
 
 export type SiteConfig = typeof siteConfig;
@@ -18,7 +10,7 @@ export const siteLinks = {
   python: "https://www.python.org/",
   firebase: "https://firebase.google.com/",
   heroUI: "https://heroui.com/",
-  github: "https://github.com/xartistax",
+  github: "https://github.com/xartistax/jobCrawler",
   linkedin: "https://www.linkedin.com/in/demianfüglistaler/",
 } as const;
 
