@@ -3,10 +3,12 @@ import { Button } from "@heroui/button";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/modal";
 import { User } from "firebase/auth";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Link } from "@heroui/link";
 
 import LogViewer from "./log-viewer";
 
 import { useUser } from "@/app/context/user";
+import { useUI } from "@/app/context/scraper-modal";
 
 type Props = {
   isOpen: boolean;
@@ -51,6 +53,7 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
   const { user } = useUser();
   const [active, setActive] = useState(false);
   const [startedAt, setStartedAt] = useState<string>("");
+  const { onOpen, onClose } = useUI();
 
   useEffect(() => {
     if (!startedAt) return;
@@ -84,15 +87,28 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
             </ModalBody>
 
             <ModalFooter className="flex items-center justify-between">
-              <p className="text-danger text-left  text-xs  pe-6 sm:pe-0">Um den JobCrawler zu nutzen müssen Sie eingeloggt sein</p>
+              {/* Left slot (text or placeholder) */}
+              <div>{!user && <p className="text-danger text-left text-xs pe-6 sm:pe-0">Um den JobCrawler zu nutzen müssen Sie eingeloggt sein</p>}</div>
 
+              {/* Right slot (button) */}
               <div className="flex gap-2">
-                {/* <Button className="text-xs" isDisabled={active} size="sm" variant="light" onPress={onClose}>
-                  Schliessen
-                </Button> */}
-                <Button className="text-xs" color="primary" isDisabled={!user || active} isLoading={active} size="sm" onPress={() => startCrawl(setStartedAt)}>
-                  Start JobScraper
-                </Button>
+                {!user ? (
+                  <Button
+                    className="text-xs"
+                    color="primary"
+                    isDisabled={!user || active}
+                    isLoading={active}
+                    size="sm"
+                    onPress={() => startCrawl(setStartedAt)}
+                  >
+                    Start JobScraper
+                  </Button>
+                ) : (
+                  <Link href="/login" onPress={() => onOpenChange(false)}>
+                    {" "}
+                    Anmelden{" "}
+                  </Link>
+                )}
               </div>
             </ModalFooter>
           </>
