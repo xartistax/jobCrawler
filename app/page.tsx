@@ -34,7 +34,7 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center w-full">
-          <div className="w-full grid grid-cols-4 place-items-center gap-5 text-black dark:text-default-200 sm:grid-cols-5 lg:grid-cols-4 lg:w-6/12">
+          <div className="w-full grid grid-cols-4 place-items-center gap-3 px-12 sm:px-6 text-black dark:text-default-200 sm:grid-cols-5 lg:grid-cols-4 lg:w-6/12">
             {siteConfig.frontIconNav.map((item) => (
               <Tooltip key={item.label} content={item.label}>
                 <Link isExternal aria-label={item.label} className="text-inherit" href={item.href}>

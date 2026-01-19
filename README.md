@@ -1,4 +1,4 @@
-# Next.js & HeroUI Template
+# JobCrawler (TypeScript, NextJS, Python, HeroUI)
 
 This application combines a modern Next.js frontend with Firebase Authentication and Firestore. It allows real job listings to be crawled using Python, searched efficiently, and saved on a per-user basis.
 
