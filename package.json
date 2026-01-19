@@ -11,6 +11,7 @@
     "seed": "node lib/seed.ts"
   },
   "dependencies": {
+    "@eslint/compat": "^2.0.1",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-regular-svg-icons": "^7.1.0",
@@ -74,7 +75,6 @@
     "striptags": "^3.2.0"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.0.1",
     "@next/eslint-plugin-next": "15.5.9",
     "@react-types/shared": "3.32.1",
     "@tailwindcss/postcss": "4.1.11",
