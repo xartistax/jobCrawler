@@ -7,10 +7,7 @@ import { useState } from "react";
 import { GoogleLogo } from "@/components/icons";
 import LoginForm from "@/components/auth/forms/login";
 import AuthInput from "@/components/auth/authInputs/authInputs";
-import {
-  handleGoogleLogin,
-  handleLogin,
-} from "@/components/auth/auth-handlers";
+import { handleGoogleLogin, handleLogin } from "@/components/auth/auth-handlers";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -42,14 +39,10 @@ export default function Login() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center md:py-10">
-      <Card className="max-w-full p-4 pb-6">
+    <section className="min-h-screen flex items-center justify-center py-3">
+      <Card className="w-full max-w-[540px] p-4 pb-6">
         <CardBody className="px-3 py-0 text-small text-default-400 gap-12">
-          <AuthInput
-            authHandler={onGoogleLogin}
-            icon={<GoogleLogo />}
-            text="Google Login"
-          />
+          <AuthInput authHandler={onGoogleLogin} icon={<GoogleLogo />} text="Google Login" />
 
           <LoginForm
             authError={authError}

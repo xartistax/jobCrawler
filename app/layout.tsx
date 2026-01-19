@@ -9,6 +9,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { UIProvider } from "./context/scraper-modal";
 
 export const metadata: Metadata = {
   title: {
@@ -28,31 +29,22 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang="de">
       <head />
-      <body
-        className={clsx(
-          "min-h-screen text-foreground font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
+      <body className={clsx("min-h-screen text-foreground font-sans antialiased", fontSans.variable)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <UserProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Navbar />
+            <UIProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <Navbar />
 
-              <main className="container mx-auto max-w-7xl flex-1 px-6">
-                {children}
-              </main>
+                <main className="container mx-auto max-w-7xl flex-1 px-6">{children}</main>
 
-              <Footer />
-            </div>
+                <Footer />
+              </div>
+            </UIProvider>
           </UserProvider>
         </Providers>
       </body>

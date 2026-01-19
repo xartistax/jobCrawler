@@ -7,10 +7,7 @@ import { Card, CardBody } from "@heroui/card";
 import RegistrationForm from "@/components/auth/forms/registration";
 import AuthInput from "@/components/auth/authInputs/authInputs";
 import { GoogleLogo } from "@/components/icons";
-import {
-  handleGoogleLogin,
-  handleRegister,
-} from "@/components/auth/auth-handlers";
+import { handleGoogleLogin, handleRegister } from "@/components/auth/auth-handlers";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -40,17 +37,11 @@ export default function Register() {
 
   return (
     <section className="min-h-screen flex items-center justify-center md:py-10">
-      <Card className="max-w-full p-4 pb-6">
+      <Card className="w-full max-w-[540px] p-4 pb-6">
         <CardBody className="px-3 py-0 text-small text-default-400 gap-12">
           {/* Google Login */}
 
-          <AuthInput
-            authHandler={() =>
-              handleGoogleLogin({ setAuthError, setLoading, push: router.push })
-            }
-            icon={<GoogleLogo />}
-            text="Google Login"
-          />
+          <AuthInput authHandler={() => handleGoogleLogin({ setAuthError, setLoading, push: router.push })} icon={<GoogleLogo />} text="Google Login" />
 
           {/* Login Form */}
           <RegistrationForm

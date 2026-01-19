@@ -1,7 +1,7 @@
 import { Button } from "@heroui/button";
 import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
-import Link from "next/link";
+import { Link } from "@heroui/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 type Props = {
@@ -31,7 +31,7 @@ export default function LoginForm({
 }: Props) {
   return (
     <Form
-      className="w-[540px] mx-auto flex flex-col gap-12"
+      className="w-full mx-auto flex flex-col gap-12"
       onSubmit={(e) => {
         e.preventDefault();
         handleLogin(e);
@@ -42,14 +42,9 @@ export default function LoginForm({
           isRequired
           classNames={{
             label: "text-xs font-light",
-            input:
-              "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
+            input: "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
           }}
-          errorMessage={
-            emailFieldError
-              ? "Bitte gib eine gültige E-Mail-Adresse ein"
-              : undefined
-          }
+          errorMessage={emailFieldError ? "Bitte gib eine gültige E-Mail-Adresse ein" : undefined}
           isInvalid={emailFieldError}
           label="E-Mail"
           labelPlacement="outside"
@@ -66,12 +61,9 @@ export default function LoginForm({
           isRequired
           classNames={{
             label: "text-xs font-light",
-            input:
-              "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
+            input: "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
           }}
-          errorMessage={
-            passwordFieldError ? "Bitte gib dein Passwort ein" : undefined
-          }
+          errorMessage={passwordFieldError ? "Bitte gib dein Passwort ein" : undefined}
           isInvalid={passwordFieldError}
           label="Passwort"
           labelPlacement="outside"
@@ -88,14 +80,7 @@ export default function LoginForm({
       </div>
 
       <div className="flex items-center gap-4">
-        <Button
-          className="text-xs font-light"
-          isDisabled={loading || !email || !password}
-          isLoading={loading}
-          size="md"
-          type="submit"
-          variant="solid"
-        >
+        <Button className="text-xs font-light" isDisabled={loading || !email || !password} isLoading={loading} size="md" type="submit" variant="solid">
           Anmelden
         </Button>
 

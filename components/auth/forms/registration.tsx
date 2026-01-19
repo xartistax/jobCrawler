@@ -36,23 +36,15 @@ export default function RegistrationForm({
   loading,
 }: Props) {
   return (
-    <Form
-      className="w-[540px] mx-auto max-w-md gap-8"
-      onSubmit={handleRegister}
-    >
+    <Form className="w-full mx-auto max-w-md gap-8" onSubmit={handleRegister}>
       <div className="flex flex-col gap-4 w-full">
         <Input
           isRequired
           classNames={{
             label: "text-xs font-light ",
-            input:
-              "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
           }}
-          errorMessage={
-            emailFieldError
-              ? "Bitte gib eine gültige E-Mail-Adresse ein"
-              : undefined
-          }
+          errorMessage={emailFieldError ? "Bitte gib eine gültige E-Mail-Adresse ein" : undefined}
           isInvalid={emailFieldError}
           label="E-Mail"
           labelPlacement="outside"
@@ -69,12 +61,9 @@ export default function RegistrationForm({
           isRequired
           classNames={{
             label: "text-xs font-light ",
-            input:
-              "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
           }}
-          errorMessage={
-            passwordFieldError ? "Bitte gib ein Passwort ein" : undefined
-          }
+          errorMessage={passwordFieldError ? "Bitte gib ein Passwort ein" : undefined}
           isInvalid={passwordFieldError}
           label="Passwort"
           labelPlacement="outside"
@@ -91,14 +80,9 @@ export default function RegistrationForm({
           isRequired
           classNames={{
             label: "text-xs font-light ",
-            input:
-              "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
           }}
-          errorMessage={
-            confirmPasswordFieldError
-              ? "Die Passwörter stimmen nicht überein"
-              : undefined
-          }
+          errorMessage={confirmPasswordFieldError ? "Die Passwörter stimmen nicht überein" : undefined}
           isInvalid={confirmPasswordFieldError}
           label="Passwort bestätigen"
           labelPlacement="outside"

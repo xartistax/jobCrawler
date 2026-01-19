@@ -77,20 +77,20 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
             <ModalHeader className="flex flex-col gap-1">Neue Jobs crawlen (Jobs.ch)</ModalHeader>
             <ModalBody className="text-sm">
               <p className="text-xs pb-3">
-                Startet den automatischen Import aktueller Stellenangebote von Jobs.ch in die Jobübersicht. (
-                {process.env.NEXT_PUBLIC_CLOSESPIDER_ITEMCOUNT}{" "}
+                Startet den automatischen Import aktueller Stellenangebote von Jobs.ch in die Jobübersicht. (max.{" "}
+                {process.env.NEXT_PUBLIC_CLOSESPIDER_ITEMCOUNT} Jobs )
               </p>
               <LogViewer active={active} setActive={setActive} startedAt={startedAt} user={user!} />
             </ModalBody>
 
             <ModalFooter className="flex items-center justify-between">
-              <p className="text-danger text-xs text-left">Um den JobCrawler zu nutzen müssen Sie eingeloggt sein</p>
+              <p className="text-danger text-left  text-xs  pe-6 sm:pe-0">Um den JobCrawler zu nutzen müssen Sie eingeloggt sein</p>
 
               <div className="flex gap-2">
-                <Button color="danger" isDisabled={active} variant="light" onPress={onClose}>
+                {/* <Button className="text-xs" isDisabled={active} size="sm" variant="light" onPress={onClose}>
                   Schliessen
-                </Button>
-                <Button color="primary" isDisabled={!user || active} isLoading={active} onPress={() => startCrawl(setStartedAt)}>
+                </Button> */}
+                <Button className="text-xs" color="primary" isDisabled={!user || active} isLoading={active} size="sm" onPress={() => startCrawl(setStartedAt)}>
                   Start JobScraper
                 </Button>
               </div>

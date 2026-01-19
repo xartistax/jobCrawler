@@ -1,19 +1,6 @@
 "use client";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/dropdown";
-import {
-  Navbar as HeroUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@heroui/navbar";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
+import { Navbar as HeroUINavbar, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarBrand, NavbarItem, NavbarMenuItem } from "@heroui/navbar";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { link as linkStyles } from "@heroui/theme";
@@ -22,7 +9,6 @@ import { Tooltip } from "@heroui/tooltip";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDisclosure } from "@heroui/modal";
 
 import AvatarWrapper from "./avatar-wrapper";
 import ThemeModal from "./modal";
@@ -32,12 +18,14 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, LinkedinIcon, Logo, OffIcon } from "@/components/icons";
 import { useUser } from "@/app/context/user";
 import { auth } from "@/lib/firebase";
+import { useUI } from "@/app/context/scraper-modal";
 
 export const Navbar = () => {
   const { user, isLoading } = useUser();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useUI();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // const searchInput = (
   //   <Input
@@ -69,27 +57,22 @@ export const Navbar = () => {
 
   const showUserUI = mounted && !isLoading && !!user;
 
-  const navItems = showUserUI
-    ? siteConfig.navItemsUser
-    : siteConfig.navItemsUser;
-  const navMenuItems = showUserUI
-    ? siteConfig.navMenuItemsUser
-    : siteConfig.navMenuItemsUser;
+  const navItems = showUserUI ? siteConfig.navItemsUser : siteConfig.navItemsUser;
+  const navMenuItems = showUserUI ? siteConfig.navMenuItemsUser : siteConfig.navMenuItemsUser;
 
   return (
     <>
       <HeroUINavbar
         isBlurred
         className="bg-background/60 backdrop-blur-md"
+        isMenuOpen={isMenuOpen}
         maxWidth="xl"
         position="sticky"
+        onMenuOpenChange={setIsMenuOpen}
       >
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
-            <Link
-              className="flex justify-start items-center gap-1 text-inherit"
-              href="/"
-            >
+            <Link className="flex justify-start items-center gap-1 text-inherit" href="/">
               <Logo />
               <p className="font-bold text-inherit">{siteConfig.name}</p>
             </Link>
@@ -99,10 +82,7 @@ export const Navbar = () => {
             {navItems.map((item) => (
               <NavbarItem key={item.href}>
                 <Link
-                  className={clsx(
-                    linkStyles({ color: "foreground" }),
-                    "data-[active=true]:text-primary data-[active=true]:font-light text-xs",
-                  )}
+                  className={clsx(linkStyles({ color: "foreground" }), "data-[active=true]:text-primary data-[active=true]:font-light text-xs")}
                   href={item.href}
                 >
                   {item.label}
@@ -112,10 +92,7 @@ export const Navbar = () => {
 
             <NavbarItem>
               <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-light text-xs cursor-pointer",
-                )}
+                className={clsx(linkStyles({ color: "foreground" }), "data-[active=true]:text-primary data-[active=true]:font-light text-xs cursor-pointer")}
                 onPress={onOpen}
               >
                 Crawler
@@ -124,12 +101,8 @@ export const Navbar = () => {
           </ul>
         </NavbarContent>
 
-        <NavbarContent
-          className="hidden sm:flex basis-1/5 sm:basis-full"
-          justify="end"
-        >
+        <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
           <NavbarItem className="hidden sm:flex gap-2">
-            {/* deine icons/theme switch bleiben immer gleich */}
             <Tooltip content="Github - Demian Füglistaler">
               <Link isExternal aria-label="Github" href={siteLinks.github}>
                 <GithubIcon className="text-default-500" />
@@ -153,33 +126,19 @@ export const Navbar = () => {
                     <AvatarWrapper />
                   </Link>
                 </DropdownTrigger>
-                <DropdownMenu
-                  aria-label="User menu"
-                  itemClasses={{ base: "gap-4" }}
-                >
+                <DropdownMenu aria-label="User menu" itemClasses={{ base: "gap-4" }}>
                   <DropdownItem key="profile" className="h-14 gap-2">
                     <p className="font-semibold">Angemeldet als</p>
                     <p className="font-light text-xs">{user.email}</p>
                   </DropdownItem>
 
-                  <DropdownItem
-                    key="logout"
-                    color="danger"
-                    description="Abmelden vom Benutzerkonto"
-                    startContent={<OffIcon />}
-                    onClick={handleLogout}
-                  >
+                  <DropdownItem key="logout" color="danger" description="Abmelden vom Benutzerkonto" startContent={<OffIcon />} onClick={handleLogout}>
                     Abmelden
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             ) : (
-              <Button
-                as={Link}
-                className="text-xs font-light"
-                href="/login"
-                variant="solid"
-              >
+              <Button as={Link} className="text-xs font-light" href="/login" variant="solid">
                 Anmelden
               </Button>
             )}
@@ -208,27 +167,30 @@ export const Navbar = () => {
 
             {navMenuItems.map((item, index) => (
               <NavbarMenuItem key={item.href + index}>
-                <Link color={"foreground"} href={item.href} size="sm">
+                <Link color={"foreground"} href={item.href} size="sm" onPress={() => setIsMenuOpen(false)}>
                   {item.label}
                 </Link>
               </NavbarMenuItem>
             ))}
             <NavbarMenuItem>
+              <Link
+                color={"foreground"}
+                size="sm"
+                onPress={() => {
+                  onOpen();
+                  setIsMenuOpen(false);
+                }}
+              >
+                Crawler
+              </Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
               {!mounted || isLoading ? null : user ? (
-                <Link
-                  className="w-full text-sm font-light cursor-pointer"
-                  color="danger"
-                  onPress={handleLogout}
-                >
+                <Link className="w-full text-sm font-light cursor-pointer" color="danger" onPress={handleLogout}>
                   Abmelden
                 </Link>
               ) : (
-                <Button
-                  as={Link}
-                  className="w-full text-sm font-light"
-                  href="/login"
-                  variant="solid"
-                >
+                <Button as={Link} className="w-full text-sm font-light" href="/login" variant="solid">
                   Anmelden
                 </Button>
               )}
