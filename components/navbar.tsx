@@ -186,13 +186,21 @@ export const Navbar = () => {
             </NavbarMenuItem>
             <NavbarMenuItem>
               {!mounted || isLoading ? null : user ? (
-                <Link className="w-full text-sm font-light cursor-pointer" color="danger" onPress={handleLogout}>
+                <Link
+                  className="cursor-pointer"
+                  color={"foreground"}
+                  size="sm"
+                  onPress={() => {
+                    setIsMenuOpen(false);
+                    handleLogout();
+                  }}
+                >
                   Abmelden
                 </Link>
               ) : (
-                <Button as={Link} className="w-full text-sm font-light" href="/login" variant="solid">
+                <Link color={"foreground"} href="/login" size="sm" onPress={() => setIsMenuOpen(false)}>
                   Anmelden
-                </Button>
+                </Link>
               )}
             </NavbarMenuItem>
           </div>

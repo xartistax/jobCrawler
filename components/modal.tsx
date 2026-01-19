@@ -92,11 +92,12 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
 
               {/* Right slot (button) */}
               <div className="flex gap-2">
-                {!user ? (
+                {user ? (
                   <Button
                     className="text-xs"
                     color="primary"
-                    isDisabled={!user || active}
+                    //isDisabled={!user || active}
+                    isDisabled={true}
                     isLoading={active}
                     size="sm"
                     onPress={() => startCrawl(setStartedAt)}
@@ -104,10 +105,9 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
                     Start JobScraper
                   </Button>
                 ) : (
-                  <Link href="/login" onPress={() => onOpenChange(false)}>
-                    {" "}
-                    Anmelden{" "}
-                  </Link>
+                  <Button as={Link} href="/login" onPress={() => onOpenChange(false)}>
+                    Anmelden
+                  </Button>
                 )}
               </div>
             </ModalFooter>
