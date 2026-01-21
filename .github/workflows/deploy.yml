@@ -23,11 +23,18 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            set -e
-            cd /opt/jobCrawler
-            git pull
-            source .venv/bin/activate
-            pip install -r crawler/requirements.txt
-            sudo systemctl restart jobcrawler
-          EOF
+          ssh -vvv \
+            -i ~/.ssh/id_ed25519 \
+            -o IdentitiesOnly=yes \
+            -o PreferredAuthentications=publickey \
+            -o PasswordAuthentication=no \
+            -o KbdInteractiveAuthentication=no \
+            -o PubkeyAuthentication=yes \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+              set -e
+              cd /opt/jobCrawler
+              git pull
+              source .venv/bin/activate
+              pip install -r crawler/requirements.txt
+              sudo systemctl restart jobcrawler
+            EOF
