@@ -96,8 +96,7 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
                   <Button
                     className="text-xs"
                     color="primary"
-                    //isDisabled={!user || active}
-                    isDisabled={true}
+                    isDisabled={!user || active}
                     isLoading={active}
                     size="sm"
                     onPress={() => startCrawl(setStartedAt)}
