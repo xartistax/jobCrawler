@@ -22,12 +22,22 @@ scrapy_colorlog.install()
 warnings.filterwarnings("ignore", category=ScrapyDeprecationWarning)
 
 
-FIREBASE_SERVICE_ACCOUNT = os.getenv(
-    "FIREBASE_SERVICE_ACCOUNT",
-    "/etc/jobcrawler/serviceAccountKey.json"  # Server-Default
-)
-
+BASE_DIR = Path(__file__).resolve().parents[2]  # project root
+FIREBASE_SERVICE_ACCOUNT = os.getenv("FIREBASE_SERVICE_ACCOUNT", str(BASE_DIR / "lib" / "serviceAccountKey.json"),)
 FIREBASE_SERVICE_ACCOUNT = Path(FIREBASE_SERVICE_ACCOUNT)
+
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "loggers": {
+        "scrapy.utils.log": {
+            "level": "WARNING",
+        },
+    },
+}
+
 
 
 BOT_NAME = "jobsCrawler"

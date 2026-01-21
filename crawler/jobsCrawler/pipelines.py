@@ -7,6 +7,7 @@
 # useful for handling different item types with a single interface
 #from itemadapter import ItemAdapter
 
+from pathlib import Path
 from typing import cast
 from google.cloud.firestore_v1.base_document import DocumentSnapshot
 import firebase_admin
@@ -34,6 +35,9 @@ class FirestorePipeline:
 
         if not service_account_path:
             raise ValueError("FIREBASE_SERVICE_ACCOUNT is not set in settings.py")
+
+        service_account_path = str(Path(service_account_path).expanduser().resolve())
+
 
         return cls(service_account_path, collection_name)
 
