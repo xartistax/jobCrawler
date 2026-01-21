@@ -17,10 +17,6 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Debug key fingerprint
-        run: |
-          ssh-keygen -lf ~/.ssh/id_ed25519
-
       - name: Deploy
         run: |
           ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
