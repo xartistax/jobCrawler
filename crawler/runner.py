@@ -34,4 +34,5 @@ def get_status() -> dict:
         "pid": _current_proc.pid if _current_proc else None,
         "started_at": _started_at.isoformat() if _started_at else None,
         "exit_code": exit_code,
+        "status": "live"
     }
