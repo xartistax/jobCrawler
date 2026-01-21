@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 
 
 # 1) Server env file (stabil, nicht im Repo)
-SERVER_ENV = Path("/etc/jobcrawler.env")
-if SERVER_ENV.exists():
-    load_dotenv(SERVER_ENV)
+
+LOCAL_ENV = Path(__file__).resolve().parents[2] / ".env.local"
+if LOCAL_ENV.exists():
+    load_dotenv(LOCAL_ENV)
 
 # 2) Lokal dev fallback (liegt im Repo, aber nicht committed)
 LOCAL_ENV = Path(__file__).resolve().parents[2] / ".env.local"  # /opt/jobCrawler/.env.local
