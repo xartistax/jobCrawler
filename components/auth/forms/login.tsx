@@ -41,8 +41,8 @@ export default function LoginForm({
         <Input
           isRequired
           classNames={{
-            label: "text-xs font-light",
-            input: "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
+            label: "text-xs font-bold",
+            input: "text-default-500 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-400",
           }}
           errorMessage={emailFieldError ? "Bitte gib eine gültige E-Mail-Adresse ein" : undefined}
           isInvalid={emailFieldError}
@@ -60,8 +60,8 @@ export default function LoginForm({
         <Input
           isRequired
           classNames={{
-            label: "text-xs font-light",
-            input: "text-default-400 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-300",
+            label: "text-xs font-bold",
+            input: "text-default-500 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-400",
           }}
           errorMessage={passwordFieldError ? "Bitte gib dein Passwort ein" : undefined}
           isInvalid={passwordFieldError}
@@ -79,14 +79,16 @@ export default function LoginForm({
         {authError && <p className="text-danger text-xs">{authError}</p>}
       </div>
 
-      <div className="flex items-center gap-4">
-        <Button className="text-xs font-light" isDisabled={loading || !email || !password} isLoading={loading} size="md" type="submit" variant="solid">
+      <div className="items-center gap-4 w-full">
+        <Button className="text-xs font-light w-full" isDisabled={loading || !email || !password} isLoading={loading} size="md" type="submit" variant="solid">
           Anmelden
         </Button>
-
-        <Link className="text-xs" href="/register">
-          Registrierung
-        </Link>
+        <p className="mt-5 text-xs text-center w-full">
+          Du hast noch keinen Account? Zur{" "}
+          <Link className="text-xs" href="/register">
+            Registrierung
+          </Link>
+        </p>
       </div>
     </Form>
   );
