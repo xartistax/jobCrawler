@@ -2,7 +2,7 @@
 import { Button } from "@heroui/button";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/modal";
 import { User } from "firebase/auth";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { Link } from "@heroui/link";
 
 import LogViewer from "./log-viewer";
@@ -15,9 +15,12 @@ type Props = {
   onOpenChange: (isOpen: boolean) => void;
 };
 
-function startCrawl(setStartedAt: Dispatch<SetStateAction<string>>) {
+function startCrawl(setStartedAt: Dispatch<SetStateAction<string>>, preRef: RefObject<HTMLPreElement>) {
   const ts = new Date().toISOString();
 
+  if (preRef.current) {
+    preRef.current.textContent = "";
+  }
   setStartedAt(ts);
 }
 
@@ -54,6 +57,8 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
   const [active, setActive] = useState(false);
   const [startedAt, setStartedAt] = useState<string>("");
   const { onOpen, onClose } = useUI();
+  const preRef = useRef<HTMLPreElement>(null);
+  const esRef = useRef<EventSource | null>(null);
 
   useEffect(() => {
     if (!startedAt) return;
@@ -81,9 +86,9 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
             <ModalBody className="text-sm">
               <p className="text-xs pb-3">
                 Startet den automatischen Import aktueller Stellenangebote von Jobs.ch in die Jobübersicht. (max.{" "}
-                {process.env.NEXT_PUBLIC_CLOSESPIDER_ITEMCOUNT} Jobs )
+                {process.env.NEXT_PUBLIC_CLOSESPIDER_ITEMCOUNT} Jobs)
               </p>
-              <LogViewer active={active} setActive={setActive} startedAt={startedAt} user={user!} />
+              <LogViewer active={active} esRef={esRef} preRef={preRef} setActive={setActive} startedAt={startedAt} user={user!} />
             </ModalBody>
 
             <ModalFooter className="flex items-center justify-between">
@@ -99,7 +104,7 @@ export default function ThemeModal({ isOpen, onOpenChange }: Props) {
                     isDisabled={!user || active}
                     isLoading={active}
                     size="sm"
-                    onPress={() => startCrawl(setStartedAt)}
+                    onPress={() => startCrawl(setStartedAt, preRef)}
                   >
                     Start JobScraper
                   </Button>
