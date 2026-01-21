@@ -47,7 +47,6 @@ LOG_DATEFORMAT = "%d-%m-%Y %H:%M:%S"
 DOWNLOAD_TIMEOUT = 15
 
 # Firebase settings
-FIREBASE_SERVICE_ACCOUNT = "../lib/serviceAccountKey.json"
 FIRESTORE_COLLECTION = "jobs"
 
 # Configure maximum crawls
