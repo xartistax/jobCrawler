@@ -43,5 +43,12 @@ bun.lockb
 /crawlerBA/
 
 
-logs/*
-!logs/.gitkeep
+crawler/logs/*
+!crawler/logs/.gitkeep
+
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
