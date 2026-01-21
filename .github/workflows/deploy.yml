@@ -1,4 +1,4 @@
-name: Deploy jobCrawler 1
+name: Deploy jobCrawler
 
 on:
   push:
