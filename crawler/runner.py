@@ -1,5 +1,6 @@
 import subprocess
 from datetime import datetime, timezone
+import sys
 
 import scrapy
 
@@ -17,7 +18,8 @@ def run_spider(logfile: str):
     if _current_proc and _current_proc.poll() is None:
         return _current_proc.pid  # läuft schon
 
-    _current_proc = subprocess.Popen(["scrapy", "crawl", "jobsCH", "-s", f"LOG_FILE={logfile}"], cwd="./")
+    #_current_proc = subprocess.Popen(["scrapy", "crawl", "jobsCH", "-s", f"LOG_FILE={logfile}"], cwd="./")
+    _current_proc = subprocess.Popen([sys.executable, "-m", "scrapy", "crawl", "jobsCH", "-s", f"LOG_FILE={logfile}"],cwd=".")
     _started_at = datetime.now(timezone.utc)
 
     return _current_proc.pid
