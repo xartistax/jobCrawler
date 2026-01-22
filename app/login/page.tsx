@@ -44,14 +44,14 @@ export default function Login() {
         <CardBody className="px-3 py-0 text-small text-default-500 gap-6">
           <div className="text-center mb-4">
             <h1 className="text-3xl"> Anmelden </h1>
-            <p className="text-body"> Bei deinem Konto anmelden </p>
+            <p className="text-xs pt-3 font-light"> Bei deinem Konto anmelden </p>
           </div>
 
           <AuthInput authHandler={onGoogleLogin} icon={<GoogleLogo />} text="Mit Google anmelden" />
 
           <span className="relative mt-3 block text-center text-xs">
             <span className="absolute left-0 top-1/2 block h-px w-full max-w-30 bg-gray-3" />
-            <span className="absolute right-0 top-1/2 block h-px w-full max-w-30 bg-gray-3" />
+            <span className="absolute text-xs font-light right-0 top-1/2 block h-px w-full max-w-30 bg-gray-3" />
             Oder per E-Mail Adresse
           </span>
 

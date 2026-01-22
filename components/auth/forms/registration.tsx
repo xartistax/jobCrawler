@@ -41,8 +41,8 @@ export default function RegistrationForm({
         <Input
           isRequired
           classNames={{
-            label: "text-xs font-light ",
-            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            label: "text-xs font-bold",
+            input: "text-default-500 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-400",
           }}
           errorMessage={emailFieldError ? "Bitte gib eine gültige E-Mail-Adresse ein" : undefined}
           isInvalid={emailFieldError}
@@ -60,8 +60,8 @@ export default function RegistrationForm({
         <Input
           isRequired
           classNames={{
-            label: "text-xs font-light ",
-            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            label: "text-xs font-bold",
+            input: "text-default-500 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-400",
           }}
           errorMessage={passwordFieldError ? "Bitte gib ein Passwort ein" : undefined}
           isInvalid={passwordFieldError}
@@ -79,8 +79,8 @@ export default function RegistrationForm({
         <Input
           isRequired
           classNames={{
-            label: "text-xs font-light ",
-            input: "placeholder:text-xs font-light text-default-400 dark:placeholder:text-default-300",
+            label: "text-xs font-bold",
+            input: "text-default-500 placeholder:text-xs placeholder:font-light dark:placeholder:text-default-400",
           }}
           errorMessage={confirmPasswordFieldError ? "Die Passwörter stimmen nicht überein" : undefined}
           isInvalid={confirmPasswordFieldError}
@@ -98,9 +98,10 @@ export default function RegistrationForm({
         {authError && <p className="text-danger text-sm">{authError}</p>}
       </div>
 
-      <div className="flex">
+      <div className="items-center gap-4 w-full">
         <Button
-          className="mr-4 text-xs font-light"
+          className="text-xs font-light w-full"
+          color="primary"
           isDisabled={loading || !email || !password || !confirmPassword}
           isLoading={loading}
           size="md"
@@ -110,9 +111,12 @@ export default function RegistrationForm({
           Jetzt registrieren
         </Button>
 
-        <Link className="text-xs" href="/login" size="md">
-          Anmelden
-        </Link>
+        <p className="mt-5 text-xs text-center w-full">
+          Du hast bereits einen Account? Jetzt{" "}
+          <Link className="text-xs" href="/login" size="md">
+            Anmelden
+          </Link>
+        </p>
       </div>
     </Form>
   );

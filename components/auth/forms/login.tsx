@@ -80,7 +80,15 @@ export default function LoginForm({
       </div>
 
       <div className="items-center gap-4 w-full">
-        <Button className="text-xs font-light w-full" isDisabled={loading || !email || !password} isLoading={loading} size="md" type="submit" variant="solid">
+        <Button
+          className="text-xs font-light w-full"
+          color="primary"
+          isDisabled={loading || !email || !password}
+          isLoading={loading}
+          size="md"
+          type="submit"
+          variant="solid"
+        >
           Anmelden
         </Button>
         <p className="mt-5 text-xs text-center w-full">

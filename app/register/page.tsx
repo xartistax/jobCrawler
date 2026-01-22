@@ -37,11 +37,25 @@ export default function Register() {
 
   return (
     <section className="min-h-screen flex items-center justify-center md:py-10">
-      <Card className="w-full max-w-[540px] p-4 pb-6">
-        <CardBody className="px-3 py-0 text-small text-default-400 gap-12">
+      <Card className="w-md p-12 ">
+        <CardBody className="px-3 py-0 text-small text-default-500 gap-6">
+          <div className="text-center mb-4">
+            <h1 className="text-3xl"> Registrieren </h1>
+            <p className="text-xs pt-3 font-light"> Neues Konto registrieren </p>
+          </div>
           {/* Google Login */}
 
-          <AuthInput authHandler={() => handleGoogleLogin({ setAuthError, setLoading, push: router.push })} icon={<GoogleLogo />} text="Google Login" />
+          <AuthInput
+            authHandler={() => handleGoogleLogin({ setAuthError, setLoading, push: router.push })}
+            icon={<GoogleLogo />}
+            text="Mit Google registrieren"
+          />
+
+          <span className="relative mt-3 block text-center text-xs">
+            <span className="absolute left-0 top-1/2 block h-px w-full max-w-30 bg-gray-3" />
+            <span className="absolute text-xs font-light right-0 top-1/2 block h-px w-full max-w-30 bg-gray-3" />
+            Oder per E-Mail Adresse und Passwort
+          </span>
 
           {/* Login Form */}
           <RegistrationForm
