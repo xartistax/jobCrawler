@@ -19,13 +19,22 @@ export default function Home() {
   var settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 6,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 3000,
     autoplaySpeed: 1000,
     cssEase: "linear",
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
@@ -55,11 +64,11 @@ export default function Home() {
     <section className="min-h-[calc(100vh-64px-56px)] flex items-center justify-center overflow-x-hidden ">
       {/* schräger Hintergrund */}
 
-      <div className="mx-auto max-w-3xl px-6 text-center leading-relaxed">
+      <div className="mx-auto max-w-3xl px-6 text-center leading-relaxed break-words [overflow-wrap:anywhere]">
         <h1 className="font-bold text-4xl mb-6">
           {siteConfig.name} <small className="text-sm font-light">FullStack Project</small>
         </h1>
-        <p className="text-default-500 mb-6 text-xs">{siteConfig.description}</p>
+        <p className="text-default-500 mb-6 text-xs mx-auto w-1/2 sm:w-full  ">{siteConfig.description}</p>
 
         <div className="mb-12 flex items-center justify-center gap-3 text-xs font-extralight text-default-500">
           <span>[</span>
@@ -93,16 +102,18 @@ export default function Home() {
         </div>
 
         {jobs.length >= 6 && (
-          <div className="slider-container relative left-[-100%] w-[2000px] mt-12  h-[170px]  ">
-            <Slider {...settings}>
-              {jobs.map((job) => (
-                <div key={job.id} className="w-lg">
-                  <div className="px-3">
-                    <JobCard job={job} showcaseItem={true} />
+          <div className="mt-12 w-full">
+            <div className="slider-container relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden ">
+              <Slider {...settings}>
+                {jobs.map((job) => (
+                  <div key={job.id} className="w-lg">
+                    <div className="px-3">
+                      <JobCard job={job} showcaseItem={true} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
+            </div>
           </div>
         )}
       </div>
