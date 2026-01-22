@@ -80,7 +80,7 @@ export default function Home() {
         <h1 className="font-bold text-4xl mb-6">
           {siteConfig.name} <small className="text-sm font-light">FullStack Project</small>
         </h1>
-        <p className="text-default-500 mb-6 text-xs mx-auto w-1/2 sm:w-full  ">{siteConfig.description}</p>
+        <p className="text-default-500 mb-6 text-xs mx-auto w-3/4 sm:w-full  ">{siteConfig.description}</p>
 
         <div className="mb-12 flex items-center justify-center gap-3 text-xs font-extralight text-default-500">
           <span>[</span>
