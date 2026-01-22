@@ -51,7 +51,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchInitial = async () => {
-      const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"), limit(22));
+      const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"), limit(6));
       const snapshot = await getDocs(q);
 
       const jobsData = snapshot.docs.map(
