@@ -96,52 +96,62 @@ export default function JobCard({ job, allowUnsave, onRemoved, showcaseItem }: P
     setSaving(false);
   }
 
+  const LinkWrapper = ({ children }: { children: React.ReactNode }) => (showcaseItem ? <Link href={`/dashboard`}>{children}</Link> : <>{children}</>);
+  const CompanyWrapper = ({ children }: { children: React.ReactNode }) =>
+    !showcaseItem ? (
+      <Link
+        isExternal
+        aria-label={job.company}
+        className="text-xs font-extralight cursor-pointer line-clamp-1 hover:underline"
+        href={job.url}
+        title={job.company}
+      >
+        {children}
+      </Link>
+    ) : (
+      <>{children}</>
+    );
+
   return (
-    <Card
-      className={` w-full flex flex-col justify-between ${showcaseItem && "border-1 border-default-200 opacity-30 hover:opacity-100 transition-opacity duration-300"} `}
-    >
-      <CardHeader className="flex gap-3">
-        <Image alt="heroui logo" height={40} radius="sm" src={`https://api.dicebear.com/9.x/identicon/svg?seed=${job.company}`} width={40} />
-        <div className="flex items-center justify-between gap-12 w-full">
-          <div className="flex flex-col text-left">
-            <h2 className="text-xs line-clamp-1" title={job.title}>
-              {job.title}
-            </h2>
-            <h3 className="text-xs text-default-500 line-clamp-1" title={companyLine}>
-              <Link
-                isExternal
-                aria-label={job.company}
-                className="text-xs font-extralight cursor-pointer line-clamp-1 hover:underline"
-                href={job.url}
-                title={job.company}
+    <LinkWrapper>
+      <Card
+        className={` w-full flex flex-col justify-between ${showcaseItem && "border-1 border-default-200 opacity-30 hover:opacity-100 transition-opacity duration-300"} `}
+      >
+        <CardHeader className="flex gap-3">
+          <Image alt="heroui logo" height={40} radius="sm" src={`https://api.dicebear.com/9.x/identicon/svg?seed=${job.company}`} width={40} />
+          <div className="flex items-center justify-between gap-12 w-full">
+            <div className="flex flex-col text-left">
+              <h2 className="text-xs line-clamp-1" title={job.title}>
+                {job.title}
+              </h2>
+              <h3 className="text-xs text-default-500 line-clamp-1" title={companyLine}>
+                <CompanyWrapper>{companyLine}</CompanyWrapper>
+              </h3>
+            </div>
+
+            {!showcaseItem && (
+              <Button
+                isIconOnly
+                aria-label={saved ? "Job entfernen" : "Job speichern"}
+                className="group text-danger-500 bg-transparent hover:text-danger-600"
+                isDisabled={saving || (saved && !allowUnsave)}
+                size="sm"
+                onPress={handleSave}
               >
-                {companyLine}
-              </Link>
-            </h3>
+                <HeartIcon filled={saved} />
+              </Button>
+            )}
           </div>
+        </CardHeader>
 
-          {!showcaseItem && (
-            <Button
-              isIconOnly
-              aria-label={saved ? "Job entfernen" : "Job speichern"}
-              className="group text-danger-500 bg-transparent hover:text-danger-600"
-              isDisabled={saving || (saved && !allowUnsave)}
-              size="sm"
-              onPress={handleSave}
-            >
-              <HeartIcon filled={saved} />
-            </Button>
-          )}
-        </div>
-      </CardHeader>
+        <CardBody>
+          <div className="text-xs text-gray-600 font-light max-h-12 overflow-hidden line-clamp-2">{striptags(job.description).trim()}</div>
+        </CardBody>
 
-      <CardBody>
-        <div className="text-xs text-gray-600 font-light max-h-12 overflow-hidden line-clamp-2">{striptags(job.description).trim()}</div>
-      </CardBody>
-
-      <CardFooter>
-        <p className="text-xs text-gray-600 font-extralight">{createdAtDate && <ClientTimeAgo date={createdAtDate} />}</p>
-      </CardFooter>
-    </Card>
+        <CardFooter>
+          <p className="text-xs text-gray-600 font-extralight">{createdAtDate && <ClientTimeAgo date={createdAtDate} />}</p>
+        </CardFooter>
+      </Card>
+    </LinkWrapper>
   );
 }

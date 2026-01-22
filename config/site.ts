@@ -1,4 +1,4 @@
-import { FirebaseLogo, GithubLogo, HeroUILogo, NextJsLogo, PythonLogo, ReactLogo, TypeScriptLogo } from "@/components/icons";
+import { FastAPILogo, FirebaseLogo, GithubLogo, HeroUILogo, NextJsLogo, PythonLogo, ReactLogo, TypeScriptLogo } from "@/components/icons";
 import { FrontIconNavItem, NavItem } from "@/types/index";
 
 export type SiteConfig = typeof siteConfig;
@@ -12,6 +12,7 @@ export const siteLinks = {
   heroUI: "https://heroui.com/",
   github: "https://github.com/xartistax/jobCrawler",
   linkedin: "https://www.linkedin.com/in/demianfüglistaler/",
+  fastAPI: "https://fastapi.tiangolo.com/",
 } as const;
 
 export const siteConfig: {
@@ -92,6 +93,11 @@ export const siteConfig: {
       label: "Python",
       href: siteLinks.python,
       icon: PythonLogo,
+    },
+    {
+      label: "FastAPI",
+      href: siteLinks.fastAPI,
+      icon: FastAPILogo,
     },
     {
       label: "Firebase",
