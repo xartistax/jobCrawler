@@ -15,33 +15,38 @@ import JobCard from "@/components/job-card";
 export default function Home() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const { onOpen } = useUI();
-  const [w, setW] = useState(0);
-
+  const [slidesToShow, setSlidesToShow] = useState(1);
   const settings = {
-    mobileFirst: true,
     dots: false,
     infinite: true,
-    slidesToShow: 1, // mobile default
+    slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     speed: 3000,
     autoplaySpeed: 0,
     cssEase: "linear",
     arrows: false,
-    responsive: [
-      { breakpoint: 640, settings: { slidesToShow: 2, slidesToScroll: 1 } }, // >=640
-      { breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 1 } }, // >=768
-      { breakpoint: 2024, settings: { slidesToShow: 4, slidesToScroll: 1 } }, // >=1024
-    ],
   };
 
   useEffect(() => {
-    const onR = () => setW(window.innerWidth);
+    const calc = () => {
+      const w = window.innerWidth;
 
-    onR();
-    window.addEventListener("resize", onR);
+      if (w >= 1024) return 4;
+      if (w >= 768) return 3;
 
-    return () => window.removeEventListener("resize", onR);
+      if (w >= 640) return 2;
+
+      return 1;
+    };
+
+    const update = () => setSlidesToShow(calc());
+
+    update();
+
+    window.addEventListener("resize", update);
+
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   useEffect(() => {
