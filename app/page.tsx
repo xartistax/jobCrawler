@@ -73,7 +73,7 @@ export default function Home() {
   }, [jobs]);
 
   return (
-    <section className="min-h-[calc(100vh-64px-56px)] flex items-center justify-center overflow-x-hidden ">
+    <section className="min-h-[calc(100vh-64px-56px)] flex items-center justify-center  ">
       {/* schräger Hintergrund */}
 
       <div className="mx-auto max-w-3xl px-6 text-center leading-relaxed break-words [overflow-wrap:anywhere]">
@@ -100,7 +100,7 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center w-full">
-          <div className="w-lg grid grid-cols-4 place-items-center gap-3 px-12 sm:px-6 text-black dark:text-default-200 sm:grid-cols-5 lg:grid-cols-4 lg:w-6/12">
+          <div className="grid w-full max-w-lg grid-cols-4 place-items-center gap-3 px-6 text-black dark:text-default-200 sm:grid-cols-5 sm:px-6 lg:grid-cols-4 lg:w-6/12">
             {siteConfig.frontIconNav.map((item) => (
               <Tooltip key={item.label} content={item.label}>
                 <Link isExternal aria-label={item.label} className="text-inherit" href={item.href}>
@@ -113,21 +113,23 @@ export default function Home() {
           </div>
         </div>
 
-        {jobs.length >= 6 && (
-          <div className="mt-12 w-full">
-            <div className="slider-container -mx-6 w-full overflow-hidden sm:relative sm:left-1/2 sm:right-1/2 sm:-mx-[50vw] sm:w-screen">
-              <Slider {...settings}>
-                {jobs.map((job) => (
-                  <div key={job.id}>
-                    <div className="px-3 min-w-0">
-                      <JobCard job={job} showcaseItem={true} />
+        <div className="hidden sm:block">
+          {jobs.length >= 6 && (
+            <div className="mt-12 -mx-6 sm:mx-0">
+              <div className="w-full overflow-hidden sm:relative sm:left-1/2 sm:right-1/2 sm:-mx-[50vw] sm:w-[100dvw]">
+                <Slider {...settings}>
+                  {jobs.map((job) => (
+                    <div key={job.id}>
+                      <div className="px-3 min-w-0">
+                        <JobCard showcaseItem job={job} />
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </Slider>
+                  ))}
+                </Slider>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );
