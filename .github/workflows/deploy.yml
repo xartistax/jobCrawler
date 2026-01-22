@@ -3,6 +3,9 @@ name: Deploy jobCrawler
 on:
   push:
     branches: [main]
+    paths:
+      - "crawler/**"
+      - ".github/workflows/deploy.yml"
 
 jobs:
   deploy:
