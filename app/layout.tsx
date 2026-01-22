@@ -4,12 +4,15 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 import { UserProvider } from "./context/user";
+import { UIProvider } from "./context/scraper-modal";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { UIProvider } from "./context/scraper-modal";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const metadata: Metadata = {
   title: {
