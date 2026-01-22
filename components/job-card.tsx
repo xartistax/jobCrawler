@@ -96,7 +96,14 @@ export default function JobCard({ job, allowUnsave, onRemoved, showcaseItem }: P
     setSaving(false);
   }
 
-  const LinkWrapper = ({ children }: { children: React.ReactNode }) => (showcaseItem ? <Link href={`/dashboard`}>{children}</Link> : <>{children}</>);
+  const LinkWrapper = ({ children }: { children: React.ReactNode }) =>
+    showcaseItem ? (
+      <Link className="block w-full" href={`/dashboard`}>
+        {children}
+      </Link>
+    ) : (
+      <>{children}</>
+    );
   const CompanyWrapper = ({ children }: { children: React.ReactNode }) =>
     !showcaseItem ? (
       <Link
@@ -119,8 +126,8 @@ export default function JobCard({ job, allowUnsave, onRemoved, showcaseItem }: P
       >
         <CardHeader className="flex gap-3">
           <Image alt="heroui logo" height={40} radius="sm" src={`https://api.dicebear.com/9.x/identicon/svg?seed=${job.company}`} width={40} />
-          <div className="flex items-center justify-between gap-12 w-full">
-            <div className="flex flex-col text-left">
+          <div className="flex items-center justify-between gap-2 sm:gap-12 w-full min-w-0">
+            <div className="flex flex-col text-left min-w-0">
               <h2 className="text-xs line-clamp-1" title={job.title}>
                 {job.title}
               </h2>

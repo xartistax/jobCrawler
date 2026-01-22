@@ -16,23 +16,28 @@ export default function Home() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const { onOpen } = useUI();
 
-  var settings = {
+  const settings = {
     dots: false,
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 3000,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 0,
     cssEase: "linear",
     arrows: false,
     responsive: [
       {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
+        breakpoint: 1024, // < 1024px
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: 768, // < 768px
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480, // < 480px
+        settings: { slidesToShow: 1 },
       },
     ],
   };
@@ -106,8 +111,8 @@ export default function Home() {
             <div className="slider-container relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden ">
               <Slider {...settings}>
                 {jobs.map((job) => (
-                  <div key={job.id} className="w-lg">
-                    <div className="px-3">
+                  <div key={job.id}>
+                    <div className="px-3 min-w-0">
                       <JobCard job={job} showcaseItem={true} />
                     </div>
                   </div>
