@@ -115,7 +115,7 @@ export default function Home() {
 
         {jobs.length >= 6 && (
           <div className="mt-12 w-full">
-            <div className="slider-container relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden ">
+            <div className="slider-container -mx-6 w-full overflow-hidden sm:relative sm:left-1/2 sm:right-1/2 sm:-mx-[50vw] sm:w-screen">
               <Slider {...settings}>
                 {jobs.map((job) => (
                   <div key={job.id}>
